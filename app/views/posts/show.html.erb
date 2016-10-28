@@ -1,4 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.sansserif {
+    font-family: Arial, Helvetica, sans-serif;
+}
+p.normal {
+    font-style: normal;
+}
+
+p.italic {
+    font-style: italic;
+}
+
+p.oblique {
+    font-style: oblique;
+}
+</style>
+</head>
+<body>
+
 <p id="notice"><%= notice %></p>
+
+<%= render @post %>
+
+<h2><font size="3" color="red"><p class="sansserif";"italic">Comments</p></font></h2> </body></html>
+<div id="comments">
+ <%= render @post.comments.reverse %>
+</div>
+
+<%= form_for [@post, Comment.new],remote: true  do |f| %>
+<p>
+<%= f.label :body, "New Comment" %><br />
+<%= f.text_area :body %>
+</p>
+<p><%= f.submit "Add Comment" %></p>
+<% end %>
 
 <p>
   <strong>Title:</strong>
